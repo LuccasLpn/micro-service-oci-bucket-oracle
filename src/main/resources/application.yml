@@ -1,0 +1,15 @@
+server:
+  error:
+    include-stacktrace: never
+  servlet:
+    context-path: /api
+  port: '8494'
+spring:
+  rabbitmq:
+    queueName: "oci-upload"
+    username: Admin
+    password: Admin
+    host: localhost
+    port: 5672
+oracle:
+  file: "/home/luccas/.oci/config"
