@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UploadBucket implements Serializable {
+public class ConsumerQueue implements Serializable {
     private String midia;
     private String nameSpace;
     private String bucketName;

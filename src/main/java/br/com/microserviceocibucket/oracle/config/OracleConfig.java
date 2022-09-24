@@ -19,13 +19,11 @@ public class OracleConfig {
     @Value("${oracle.file}")
     private String configurationFilePath;
     private ObjectStorage client;
-    private ConfigFileReader.ConfigFile configFile;
-    private ConfigFileAuthenticationDetailsProvider provider;
 
     @PostConstruct
     void init() throws IOException {
-        configFile = ConfigFileReader.parse(configurationFilePath, "DEFAULT");
-        provider = new ConfigFileAuthenticationDetailsProvider(configFile);
+        ConfigFileReader.ConfigFile configFile = ConfigFileReader.parse(configurationFilePath, "DEFAULT");
+        ConfigFileAuthenticationDetailsProvider provider = new ConfigFileAuthenticationDetailsProvider(configFile);
         client = new ObjectStorageClient(provider);
     }
     private UploadConfiguration uploadConfiguration(){

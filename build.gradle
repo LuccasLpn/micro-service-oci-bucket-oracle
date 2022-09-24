@@ -6,12 +6,17 @@ plugins {
 
 group = 'br.com'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
+java.sourceCompatibility = JavaVersion.VERSION_11
 
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 }
 
 repositories {
@@ -26,11 +31,11 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.amqp:spring-rabbit-test'
     implementation 'com.fasterxml.jackson.module:jackson-modules-java8:2.13.4'
-    implementation 'com.oracle.oci.sdk:oci-java-sdk-core:2.42.0'
+    implementation 'com.oracle.oci.sdk:oci-java-sdk-core:2.43.0'
     implementation 'com.oracle.oci.sdk:oci-java-sdk-objectstorage:2.43.0'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springdoc:springdoc-openapi-ui:1.6.9'
-    implementation 'org.springdoc:springdoc-openapi-kotlin:1.6.9'
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.11'
+    implementation 'org.springdoc:springdoc-openapi-kotlin:1.6.11'
 }
 
 tasks.named('test') {

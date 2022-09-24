@@ -2,7 +2,7 @@ package br.com.microserviceocibucket.rabbitmq.consumer;
 
 import br.com.microserviceocibucket.oracle.config.OracleConfig;
 import br.com.microserviceocibucket.oracle.dto.UploadOracle;
-import br.com.microserviceocibucket.rabbitmq.dto.UploadBucket;
+import br.com.microserviceocibucket.rabbitmq.dto.ConsumerQueue;
 import br.com.microserviceocibucket.util.Decode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -18,7 +18,7 @@ public class RabbitConsumer {
 
 
     @RabbitListener(queues = "oci-upload")
-    public void consumer(UploadBucket consumerQueue) {
+    public void consumer(ConsumerQueue consumerQueue) throws IOException {
         InputStream inputStream = new Decode().decodeString(consumerQueue.getMidia());
         UploadOracle uploadOracle = UploadOracle.
                 builder()
@@ -27,11 +27,7 @@ public class RabbitConsumer {
                 .nameSpace(consumerQueue.getNameSpace())
                 .fileName(consumerQueue.getFileName())
                 .build();
-        try {
             oracleConfig.uploadBucket(uploadOracle);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 }
 
